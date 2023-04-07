@@ -1,0 +1,75 @@
+.week-calendar {
+    display: grid;
+    grid-template-columns: 3rem repeat(7, 1fr);
+    grid-template-rows: 3rem auto;
+    grid-template-areas:
+    "empty header header header header header header header"
+    "sidebar content content content content content content content";
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.header {
+    grid-area: header;
+}
+
+.content {
+    grid-area: content;
+}
+
+
+.hour {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 10px;
+    font-size: 12px;
+    --hour: 0;
+    top: calc(2.5rem * var(--hour));
+}
+
+.divider {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(2.5rem * var(--hour) - 1px);
+    height: 1px;
+    background-color: white;
+    border-bottom: 1px solid white;
+}
+.divider-container .divider:last-of-type {
+    display: none;
+}
+
+.divider-container .divider:first-of-type {
+    display: none;
+}
+
+/*.event {*/
+/*    right: 0;*/
+/*    --event-hour: 0;*/
+/*    top: calc(var(--event-hour) * 4rem + 1px);*/
+/*}*/
+
+.timeline-unit {
+    border-bottom: 1px solid white;
+}
+
+.timeline-unit:last-of-type {
+    border-bottom: none;
+}
+
+.timeline-block {
+    box-sizing: border-box;
+    border-left: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+.event {
+    --event-start-hour: 0;
+    --event-duration: 0;
+    height: calc(var(--event-duration) * 2.5rem - 1px);
+    top: calc(var(--event-start-hour) * 2.5rem);
+}

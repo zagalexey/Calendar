@@ -1,0 +1,48 @@
+{
+  "name": "calendarapp",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.3",
+    "dayjs": "^1.11.7",
+    "moment": "^2.29.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.0.5",
+    "redux": "^4.2.1",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/moment": "^2.13.0",
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@types/react-redux": "^7.1.25",
+    "@types/redux": "^3.6.0",
+    "@types/uuid": "^9.0.1",
+    "@vitejs/plugin-react-swc": "^3.0.0",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.7",
+    "prettier-plugin-tailwindcss": "^0.2.6",
+    "tailwindcss": "^3.3.1",
+    "typescript": "^4.9.3",
+    "vite": "^4.2.0"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 100,
+    "proseWrap": "always",
+    "tabWidth": 2,
+    "useTabs": true,
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "jsxSingleQuote": true,
+    "semi": false
+  }
+}
