@@ -2,7 +2,9 @@
 
 Calendar with month and week views using Typescript and React
 
-![app-overview](public/Preview.png)
+![app-overview](public/MonthPreview.png)
+
+![app-overview](public/WeekPreview.png)
 
 
 ### For this project I have used these technologies:
