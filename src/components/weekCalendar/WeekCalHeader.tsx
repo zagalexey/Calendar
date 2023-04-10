@@ -9,11 +9,12 @@ interface IWeekCalendarHeaderProps {
 
 const WeekCalHeader: React.FC<IWeekCalendarHeaderProps> = ({ week }) => {
 	return (
-		<div className={'h-full w-full grid grid-rows-1 grid-cols-7'}>
-			{week &&
-				week.map((weekDay) => (
+		<div className={'header'}>
+			<div className={'grid h-full w-full grid-cols-7 grid-rows-1'}>
+				{week?.map((weekDay) => (
 					<WeekCalHeaderUnit key={weekDay} weekday={dayjs(weekDay).format('ddd D')} />
 				))}
+			</div>
 		</div>
 	)
 }

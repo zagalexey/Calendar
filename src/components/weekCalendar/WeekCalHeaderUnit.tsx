@@ -6,7 +6,7 @@ interface IWeekCalHeaderUnitProps {
 
 const WeekCalHeaderUnit: React.FC<IWeekCalHeaderUnitProps> = ({ weekday }) => {
 	return (
-		<div className={'flex justify-center items-center'}>
+		<div className={'box-border flex items-center justify-center border border-divider'}>
 			<span>{weekday}</span>
 		</div>
 	)

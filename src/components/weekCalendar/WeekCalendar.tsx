@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import dayjs from 'dayjs'
 import weekOfYear from 'dayjs/plugin/weekOfYear'
 
-import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { setMonth, setYear } from '../../features/days/daysSlice'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { setMonth, setYear } from '../../store/days/daysSlice'
 import { getWeekDays } from '../../utils/dateUtils'
 
 import WeekCalHeader from './WeekCalHeader'
@@ -20,12 +20,12 @@ const WeekCalendar: React.FC = () => {
 	const [week, setWeek] = useState<string[] | null>(null)
 
 	useEffect(() => {
-		const weekDays = getWeekDays(2023, weekNumber!)
+		const weekDays = getWeekDays(2023, weekNumber)
 		setWeek(weekDays)
 	}, [])
 
 	useEffect(() => {
-		const weekDays = getWeekDays(2023, weekNumber!)
+		const weekDays = getWeekDays(2023, weekNumber)
 		const firstWeekDay = weekDays[0]
 		const firstWeekDayMonth = dayjs(firstWeekDay).month()
 		const firstWeekDayYear = dayjs(firstWeekDay).year()
@@ -39,14 +39,10 @@ const WeekCalendar: React.FC = () => {
 	}, [weekNumber])
 
 	return (
-		<div className={'w-full h-full week-calendar'}>
-			<div className={'h-full relative sidebar'}>
-				<WeekCalSidebar />
-			</div>
-			<div className={'header'}>{week && <WeekCalHeader week={week} />}</div>
-			<div className={'content'}>
-				<WeekCalTimeline week={week} />
-			</div>
+		<div className={'week-calendar h-full w-full'}>
+			<WeekCalSidebar />
+			<WeekCalHeader week={week} />
+			<WeekCalTimeline week={week} />
 		</div>
 	)
 }

@@ -1,13 +1,12 @@
 import React from 'react'
+
 import MonthCalHeaderUnit from './MonthCalHeaderUnit'
 
-interface IMonthCalendarHeaderProps {}
-
-const MonthCalHeader: React.FC<IMonthCalendarHeaderProps> = ({}) => {
+const MonthCalHeader: React.FC = () => {
 	const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
 	return (
-		<div className={'h-[40px] grid grid-rows-1 grid-cols-7'}>
+		<div className={'grid h-[40px] grid-cols-7 grid-rows-1'}>
 			{weekDays.map((weekday) => (
 				<MonthCalHeaderUnit key={weekday} weekday={weekday} />
 			))}

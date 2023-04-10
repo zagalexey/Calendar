@@ -10,7 +10,9 @@ module.exports = {
 			colors: {
 				'calendar': '#20212A',
 				'current-month' : '#DDDDDE',
-				'another-month' : '#57575E'
+				'another-month' : '#57575E',
+				'modal': '#28292E',
+				'divider': '#404040'
 			}
 		}
 	},

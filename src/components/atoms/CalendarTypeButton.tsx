@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { changeCalendarType } from '../../features/days/daysSlice'
-import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { changeCalendarType } from '../../store/days/daysSlice'
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
 
 interface ICalendarTypeButtonProps {
 	buttonType: 'month' | 'week'

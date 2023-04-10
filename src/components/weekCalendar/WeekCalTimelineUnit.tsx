@@ -1,5 +1,4 @@
 import React from 'react'
-import dayjs from 'dayjs'
 
 import './styles.css'
 
@@ -9,7 +8,7 @@ interface IWeekCalTimelineHoursProps {
 }
 
 const WeekCalTimelineUnit: React.FC<IWeekCalTimelineHoursProps> = ({ day, hour }) => {
-	return <div className={'w-full h-[2.5rem] flex justify-center timeline-unit items-center'}></div>
+	return <div className={'timeline-unit flex h-[2.5rem] w-full items-center justify-center'}></div>
 }
 
 export default WeekCalTimelineUnit

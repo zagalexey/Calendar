@@ -1,38 +1,40 @@
-import { EventType } from '../models'
 import { v4 as uuid } from 'uuid'
+
+import { type Color, EVENT_COLORS, type EventType } from '../models'
+
+export const eventColors: Color[] = [
+	{ name: 'Green', value: EVENT_COLORS.GREEN },
+	{ name: 'Yellow', value: EVENT_COLORS.YELLOW },
+	{ name: 'Red', value: EVENT_COLORS.RED },
+	{ name: 'Blue', value: EVENT_COLORS.BLUE },
+	{ name: 'Purple', value: EVENT_COLORS.PURPLE },
+	{ name: 'Pink', value: EVENT_COLORS.PINK },
+]
 
 export function createNewEvent(
 	eventDate: string,
 	name: string,
 	startTime: string,
 	endTime: string,
-	color: string
+	color: string,
 ): EventType {
 	return {
 		id: uuid(),
-		date: eventDate!,
-		name: name,
-		startTime: startTime,
-		endTime: endTime,
-		color: color
+		date: eventDate,
+		name,
+		startTime,
+		endTime,
+		color,
 	}
 }
 
-export function checkIfTimeValid(
-	inputStartH: string,
-	inputStartM: string,
-	inputEndH: string,
-	inputEndM: string
-): boolean {
-	const startTime = parseInt(inputStartH) + parseInt(inputStartM) / 60
-	const endTime = parseInt(inputEndH) + parseInt(inputEndM) / 60
-
-	return startTime < endTime
+export function isTimeValid(inputStartTime: number, inputEndTime: number): boolean {
+	return inputStartTime < inputEndTime
 }
 
 export function checkForEventsOverlap(events: EventType[] | null, newEvent: EventType): boolean {
 	let isValid = true
-	if (events) {
+	if (events !== null) {
 		const allDayEvents: EventType[] = events.filter((event) => event.date === newEvent.date)
 		allDayEvents.forEach((event) => {
 			const newEventStart = convertTimeIntoFloat(newEvent.startTime)

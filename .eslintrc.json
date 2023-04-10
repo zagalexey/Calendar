@@ -1,0 +1,71 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "standard-with-typescript",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "overrides": [
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["react", "prettier"],
+  "rules": {
+    "no-console": "warn",
+    "no-unused-vars": "off",
+    "quotes": ["warn", "single"],
+    "eqeqeq": ["warn", "always"],
+    "no-var": ["warn"],
+    "prefer-const": "warn",
+    "@typescript-eslint/no-empty-interface": [
+      "warn",
+      {
+        "allowSingleExtends": true
+      }
+    ],
+    "@typescript-eslint/explicit-function-return-type": [
+      "off",
+      {
+        "allowTypedFunctionExpressions": true,
+        "allowExpressions": true
+      }
+    ],
+    "@typescript-eslint/explicit-member-accessibility": [
+      "warn",
+      {
+        "accessibility": "no-public"
+      }
+    ],
+    "@typescript-eslint/await-thenable": ["warn"],
+    "@typescript-eslint/no-use-before-define": ["off"],
+    "@typescript-eslint/no-angle-bracket-type-assertion": ["off"],
+    "@typescript-eslint/no-require-imports": ["warn"],
+    "@typescript-eslint/no-unnecessary-type-assertion": ["warn"],
+    "@typescript-eslint/prefer-string-starts-ends-with": ["warn"],
+    "@typescript-eslint/interface-name-prefix": ["off"],
+    "@typescript-eslint/prefer-interface": ["off"],
+    "import/order": ["error", {
+      "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
+      "newlines-between": "always-and-inside-groups"
+    }],
+    "react/react-in-jsx-scope": ["off"],
+    "react/jsx-uses-react": ["off"],
+    "indent": ["off"],
+    "no-tabs": ["error", { "allowIndentationTabs": true }],
+    "@typescript-eslint/indent": ["off"],
+    "space-before-function-paren": ["error", "never"],
+    "@typescript-eslint/space-before-function-paren": ["error", "never"],
+    "prettier/prettier": "error"
+  }
+}

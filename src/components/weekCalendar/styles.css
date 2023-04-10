@@ -1,7 +1,7 @@
 .week-calendar {
     display: grid;
-    grid-template-columns: 3rem repeat(7, 1fr);
-    grid-template-rows: 3rem auto;
+    grid-template-columns: 40px repeat(7, 1fr);
+    grid-template-rows: 40px auto;
     grid-template-areas:
     "empty header header header header header header header"
     "sidebar content content content content content content content";
@@ -36,25 +36,15 @@
     right: 0;
     top: calc(2.5rem * var(--hour) - 1px);
     height: 1px;
-    background-color: white;
-    border-bottom: 1px solid white;
+    background-color: #404040;
+    border-bottom: 1px solid #404040;
 }
 .divider-container .divider:last-of-type {
     display: none;
 }
 
-.divider-container .divider:first-of-type {
-    display: none;
-}
-
-/*.event {*/
-/*    right: 0;*/
-/*    --event-hour: 0;*/
-/*    top: calc(var(--event-hour) * 4rem + 1px);*/
-/*}*/
-
 .timeline-unit {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #404040;
 }
 
 .timeline-unit:last-of-type {
@@ -63,8 +53,8 @@
 
 .timeline-block {
     box-sizing: border-box;
-    border-left: 1px solid white;
-    border-bottom: 1px solid white;
+    border-left: 1px solid #404040;
+    border-bottom: 1px solid #404040;
 }
 
 .event {

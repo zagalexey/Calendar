@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import dayjs from 'dayjs'
-import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { EventType } from '../../models'
+
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { type EventType } from '../../models'
 import MonthEvent from '../atoms/MonthEvent'
-import { changeEventToggle, setEventDate } from '../../features/days/daysSlice'
+import { changeEventToggle, setEventDate } from '../../store/days/daysSlice'
 
 interface IDayUnitProps {
 	day: string
@@ -29,27 +30,23 @@ const DayUnit: React.FC<IDayUnitProps> = ({ day }) => {
 		}
 	}, [allCurrentEvents])
 
-	// useEffect(() => {
-	// 	isMaxEvents && setAboveMaxCounter(allCurrentEvents.length - 2)
-	// }, [isMaxEvents])
-
 	let dayClassName: string
 	let currentDay: string
 	if (dayjs(day).format('YY/MM/DD') === dayjs(today).format('YY/MM/DD')) {
-		dayClassName = `text-l text-calendar`
-		currentDay = `ml-1 mt-1 w-6 h-6 text-center bg-red-500 text-calendar rounded-full`
+		dayClassName = 'text-l text-calendar'
+		currentDay = 'ml-1 mt-1 w-6 h-6 text-center bg-red-500 text-calendar rounded-full'
 	} else {
-		dayClassName = `text-l`
+		dayClassName = 'text-l'
 		currentDay = 'ml-1 mt-1 w-6 h-6 text-center'
 	}
 
 	const monthClassName =
 		dayjs(day).month() === monthToDisplay
-			? `h-full relative box-border border border-white text-current-month`
-			: `h-full relative box-border border border-white text-another-month`
+			? 'h-full relative box-border border border-divider text-current-month'
+			: 'h-full relative box-border border border-divider text-another-month'
 
 	function checkForEvents() {
-		if (events) {
+		if (events !== null) {
 			const currentDayFormat = dayjs(day).format('YYYY-MM-DD')
 			let currentDayEvents: EventType[] | null
 			currentDayEvents = events.filter((event) => event.date === currentDayFormat)
@@ -68,14 +65,14 @@ const DayUnit: React.FC<IDayUnitProps> = ({ day }) => {
 			<div className={currentDay}>
 				<span className={dayClassName}>{dayjs(day).format('D')}</span>
 			</div>
-			<div className={'h-full overflow-y-scroll relative pb-5'}>
-				{allCurrentEvents!.length > 2
+			<div className={'relative h-full overflow-y-scroll pb-5'}>
+				{allCurrentEvents.length > 2
 					? allCurrentEvents
 							?.slice(0, 2)
 							.map((event) => <MonthEvent key={event.id} event={event} />)
-					: allCurrentEvents!.map((event) => <MonthEvent key={event.id} event={event} />)}
+					: allCurrentEvents.map((event) => <MonthEvent key={event.id} event={event} />)}
 				{isMaxEvents ? (
-					<span className={'text-sm ml-2 text-another-month'}>{aboveMaxCounter} more...</span>
+					<span className={'ml-2 text-sm text-another-month'}>{aboveMaxCounter} more...</span>
 				) : (
 					<></>
 				)}

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 
-import { EventType } from '../../models'
 import dayjs from 'dayjs'
 
+import { type EventType } from '../../models'
+
 import '../weekCalendar/styles.css'
-import { useAppDispatch } from '../../app/hooks'
-import { deleteEvent } from '../../features/days/daysSlice'
+
 import WeekEventShort from './WeekEventShort'
 import WeekEventLong from './WeekEventLong'
 
@@ -14,9 +14,8 @@ interface IEventProps {
 }
 
 const WeekEvent: React.FC<IEventProps> = ({ event }) => {
-	const dispatch = useAppDispatch()
-	const [eventStartTime, setEventStartTime] = useState<number>()
-	const [eventDuration, setEventDuration] = useState<number>()
+	const [eventStartTime, setEventStartTime] = useState<number | null>(null)
+	const [eventDuration, setEventDuration] = useState<number | null>(null)
 	const [eventHover, setEventHover] = useState<boolean>(false)
 	const [isShortEvent, setIsShortEvent] = useState<boolean>(false)
 
@@ -25,14 +24,14 @@ const WeekEvent: React.FC<IEventProps> = ({ event }) => {
 	}, [event])
 
 	useEffect(() => {
-		if (eventDuration! <= 0.5) {
-			setIsShortEvent(true)
+		if (eventDuration !== null) {
+			eventDuration < 1 && setIsShortEvent(true)
 		}
 	}, [eventDuration])
 
 	function calculateEventTime() {
-		let startTimeHour = parseInt(event.startTime.split(':')[0])
-		let startTimeMinute = parseInt(event.startTime.split(':')[1])
+		const startTimeHour = parseInt(event.startTime.split(':')[0])
+		const startTimeMinute = parseInt(event.startTime.split(':')[1])
 		setEventStartTime(startTimeHour + startTimeMinute / 60 - 6)
 
 		const eventStartDate = dayjs(`${event.date}T${event.startTime}:00`)

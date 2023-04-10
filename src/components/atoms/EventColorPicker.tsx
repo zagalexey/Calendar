@@ -1,5 +1,7 @@
 import React from 'react'
-import { EventColors } from '../../models'
+
+import { eventColors } from '../../utils/eventUtils'
+import { EVENT_COLORS } from '../../models'
 
 interface IEventColorPickerProps {
 	onChange: (value: string) => void
@@ -8,20 +10,21 @@ interface IEventColorPickerProps {
 const EventColorPicker: React.FC<IEventColorPickerProps> = ({ onChange }) => {
 	return (
 		<>
-			<label htmlFor='color'>Pick color</label>
+			<label htmlFor='color'>Color</label>
 			<select
-				className={'bg-black'}
+				className={'rounded bg-black p-1'}
 				name='color'
 				id='color'
-				defaultValue={EventColors.RED}
-				onChange={(e) => onChange(e.target.value)}
+				defaultValue={EVENT_COLORS.RED}
+				onChange={(e) => {
+					onChange(e.target.value)
+				}}
 			>
-				<option value={EventColors.RED}>Red</option>
-				<option value={EventColors.GREEN}>Green</option>
-				<option value={EventColors.BLUE}>Blue</option>
-				<option value={EventColors.PURPLE}>Purple</option>
-				<option value={EventColors.PINK}>Pink</option>
-				<option value={EventColors.YELLOW}>Yellow</option>
+				{eventColors.map((color) => (
+					<option key={color.name} value={color.value}>
+						{color.name}
+					</option>
+				))}
 			</select>
 		</>
 	)

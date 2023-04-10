@@ -1,5 +1,10 @@
 import React from 'react'
-import { EventType } from '../../models'
+
+import { type EventType } from '../../models'
+
+import CloseIcon from '../../assets/close_icon.svg'
+import { useAppDispatch } from '../../store/hooks'
+import { deleteEvent } from '../../store/days/daysSlice'
 
 interface IMonthEventDetailedProps {
 	event: EventType
@@ -7,28 +12,27 @@ interface IMonthEventDetailedProps {
 }
 
 const MonthEventDetailed: React.FC<IMonthEventDetailedProps> = ({ event, onClick }) => {
+	const dispatch = useAppDispatch()
+
 	return (
 		<div
 			className={
-				'absolute w-full top-0 h-fit px-1 py-2 flex flex-col gap-2 items-start bg-green-500 rounded z-20 opacity-100'
+				'absolute top-0 z-20 flex h-fit w-full flex-col items-start gap-2 rounded bg-green-500 px-1 py-2 opacity-100'
 			}
 			style={{ backgroundColor: event.color }}
 		>
 			<span className={'text-xs text-black'}>{event.startTime + ' - ' + event.endTime}</span>
-			<div className={'border border-calendar rounded px-1'}>
-				<p className={'w-full block text-sm text-black'}>{event.name}</p>
+			<div className={'rounded border border-calendar px-1'}>
+				<p className={'block w-full text-sm text-black'}>{event.name}</p>
 			</div>
-			<svg
-				className={'absolute top-2 right-2 rounded-full hover:bg-white'}
-				xmlns='http://www.w3.org/2000/svg'
-				viewBox='0 0 48 48'
-				width='16px'
-				height='16px'
-				onClick={(e) => onClick(e)}
-			>
-				<path fill='#F44336' d='M21.5 4.5H26.501V43.5H21.5z' transform='rotate(45.001 24 24)' />
-				<path fill='#F44336' d='M21.5 4.5H26.5V43.501H21.5z' transform='rotate(135.008 24 24)' />
-			</svg>
+			<img
+				className={
+					'absolute right-1 top-0.5 h-[16px] w-[16px] rounded hover:cursor-pointer hover:bg-white'
+				}
+				src={CloseIcon}
+				alt='CloseIcon'
+				onClick={() => dispatch(deleteEvent(event.id))}
+			/>
 		</div>
 	)
 }

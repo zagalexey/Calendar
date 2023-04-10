@@ -7,10 +7,12 @@ interface IEventNameInputProps {
 const EventNameInput: React.FC<IEventNameInputProps> = ({ onChange }) => {
 	return (
 		<input
-			className={'py-1 px-2 rounded bg-black'}
+			className={'rounded bg-black px-2 py-1'}
 			type='text'
-			placeholder={'WeekEvent name'}
-			onChange={(e) => onChange(e.target.value)}
+			placeholder={'New event'}
+			onChange={(e) => {
+				onChange(e.target.value)
+			}}
 			required={true}
 		/>
 	)

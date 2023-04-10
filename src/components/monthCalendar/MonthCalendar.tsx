@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 
 import { getMonthDays } from '../../utils/dateUtils'
+
+import { useAppDispatch, useAppSelector } from '../../store/hooks'
+import { putDays } from '../../store/days/daysSlice'
+
 import DayUnit from './DayUnit'
-import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { putDays } from '../../features/days/daysSlice'
 import MonthCalHeader from './MonthCalHeader'
 
-interface ICalendarProps {}
-
-const MonthCalendar: React.FC<ICalendarProps> = ({}) => {
+const MonthCalendar: React.FC = () => {
 	const dispatch = useAppDispatch()
 	const { days, monthToDisplay, yearToDisplay } = useAppSelector((state) => state.days)
 
@@ -19,9 +19,8 @@ const MonthCalendar: React.FC<ICalendarProps> = ({}) => {
 	return (
 		<>
 			<MonthCalHeader />
-			<div className={'w-full h-[700px] bg-calendar grid grid-cols-7 grid-rows-6'}>
-				{days &&
-					days.map((dayRow) => dayRow.map((day, index) => <DayUnit key={index} day={day} />))}
+			<div className={'grid h-[700px] w-full grid-cols-7 grid-rows-6 bg-calendar'}>
+				{days?.map((dayRow) => dayRow.map((day, index) => <DayUnit key={index} day={day} />))}
 			</div>
 		</>
 	)

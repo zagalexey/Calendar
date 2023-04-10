@@ -1,5 +1,3 @@
-import dayjs, { Dayjs } from 'dayjs'
-
 export interface EventType {
 	id: string
 	date: string
@@ -9,15 +7,30 @@ export interface EventType {
 	color: string
 }
 
-export interface HourObjectType {
-	hour: string
+export interface Color {
+	name: string
+	value: string
 }
 
-export enum EventColors {
+export interface FormInput {
+	inputName: string
+	inputStartH: string
+	inputStartM: string
+	inputEndH: string
+	inputEndM: string
+	inputColor: string
+}
+
+export enum EVENT_COLORS {
 	GREEN = '#03FA82',
 	YELLOW = '#FCF582',
 	RED = '#FF0000',
 	BLUE = '#0060FF',
 	PURPLE = '#AB00FF',
-	PINK = '#FF00FF'
+	PINK = '#FF00FF',
+}
+
+export enum CALENDAR_TYPE {
+	MONTH = 'month',
+	WEEK = 'week',
 }

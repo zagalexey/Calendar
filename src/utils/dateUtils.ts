@@ -12,7 +12,7 @@ export function getMonthDays(year: number, month = dayjs().month()) {
 }
 
 export function getWeekDays(year: number, week: number): string[] {
-	let weekDays: string[] = []
+	const weekDays: string[] = []
 	for (let i = 1; i <= 7; i++) {
 		const day = dayjs().year(year).week(week).day(i)
 		weekDays.push(day.toISOString())

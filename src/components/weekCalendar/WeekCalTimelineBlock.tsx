@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import dayjs from 'dayjs'
 
-import { useAppSelector } from '../../app/hooks'
-import { EventType } from '../../models'
+import { useAppSelector } from '../../store/hooks'
+import { type EventType } from '../../models'
+import { createHourArray } from '../../utils/calendarUtils'
 
-import WeekCalTimelineUnit from './WeekCalTimelineUnit'
 import WeekEvent from '../atoms/WeekEvent'
 
+import WeekCalTimelineUnit from './WeekCalTimelineUnit'
+
 import './styles.css'
-import { createHourArray } from '../../utils/calendarUtils'
 
 interface IWeekCalTimelineUnitProps {
 	weekDay: string
@@ -25,20 +26,25 @@ const WeekCalTimelineBlock: React.FC<IWeekCalTimelineUnitProps> = ({ weekDay }) 
 	}, [weekDay, events])
 
 	function checkForEvents() {
-		if (events) {
+		if (events !== null) {
 			const currentDayFormat = dayjs(weekDay).format('YYYY-MM-DD')
-			let currentDayEvents: EventType[] | null
-			currentDayEvents = events.filter((event) => event.date === currentDayFormat)
-			currentDayEvents && setCurrentEvents(currentDayEvents)
+			const currentDayEvents = events.filter((event) => event.date === currentDayFormat)
+			if (currentDayEvents.length > 0) {
+				setCurrentEvents(currentDayEvents)
+			} else {
+				setCurrentEvents(null)
+			}
 		}
 	}
 
 	return (
-		<div className={'w-full h-full relative timeline-block'}>
+		<div className={'timeline-block relative h-full w-full'}>
 			{hoursArray.map((hour) => (
 				<WeekCalTimelineUnit key={hour} day={weekDay} hour={hour} />
 			))}
-			{currentEvents && currentEvents.map((event) => <WeekEvent key={event.id} event={event} />)}
+			{currentEvents?.map((event) => (
+				<WeekEvent key={event.id} event={event} />
+			))}
 		</div>
 	)
 }

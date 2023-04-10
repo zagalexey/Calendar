@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 
-import { EventType } from '../../models'
-import { useAppDispatch } from '../../app/hooks'
-import { deleteEvent } from '../../features/days/daysSlice'
+import { type EventType } from '../../models'
+import { useAppDispatch } from '../../store/hooks'
+import { deleteEvent } from '../../store/days/daysSlice'
+
 import MonthEventDetailed from './MonthEventDetailed'
 
 interface IMonthEventProps {
@@ -20,14 +21,20 @@ const MonthEvent: React.FC<IMonthEventProps> = ({ event }) => {
 
 	return (
 		<div
-			className={'w-full relative rounded mb-1'}
+			className={'relative mb-1 w-full rounded'}
 			style={{ backgroundColor: `${event.color}` }}
-			onMouseOver={() => setEventHover(true)}
-			onMouseLeave={() => setEventHover(false)}
-			onClick={(e) => e.stopPropagation()}
+			onMouseOver={() => {
+				setEventHover(true)
+			}}
+			onMouseLeave={() => {
+				setEventHover(false)
+			}}
+			onClick={(e) => {
+				e.stopPropagation()
+			}}
 		>
 			{eventHover && <MonthEventDetailed event={event} onClick={deleteHandler} />}
-			<span className={'w-full mx-2 text-sm truncate text-end text-black'}>{event.name}</span>
+			<span className={'mx-2 w-full truncate text-end text-sm text-black'}>{event.name}</span>
 		</div>
 	)
 }
